@@ -1,0 +1,36 @@
+@startuml
+actor 老爷爷 as geezer 
+actor 葫芦娃们 as gourd
+control 冒泡排序器 as sorter
+queue 队列 as line
+
+line -> line : 预留七个位置
+gourd -> gourd :初始化七只葫芦娃
+line <-> gourd : 排成初始队列
+geezer -> geezer : 初始化老爷爷
+sorter -> sorter : 初始化冒泡排序器
+geezer -> sorter : 设为自己的排序器
+geezer -> line : 获取队列信息
+geezer -> sorter : 调用排序器加载队列信息
+geezer -> sorter : 调用排序器进行排序
+geezer -> sorter : 调用排序器得到排序日志
+note left
+    一次性取得所有排序日志
+end note
+geezer -> gourd : 依据排序日志对葫芦娃交换
+note left
+    每次只执行一次交换，重复以下过程
+    直到完成所有日志中的交换
+end note
+gourd -> line : 葫芦娃交换调整队列排序
+geezer -> line : 得到调整后的队列信息
+geezer -> geezer : 打印队列
+note right
+    以上过程每依据日志交换一次位置即进行一次打印
+    重复上述过程，直到完成所有日志中的交换
+end note
+
+
+
+
+@enduml
